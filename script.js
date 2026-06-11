@@ -102,6 +102,28 @@ function saveBouquet() {
 }
 
 function loadBouquet() {
+    // ตรวจสอบว่ามีข้อมูลดอกไม้ส่งมาทาง URL หรือไม่ (สำหรับฝั่งคนรับ)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('view') === 'receiver' && urlParams.get('f')) {
+        let flowers = urlParams.get('f').split(',');
+        for (let i = 0; i < 5; i++) {
+            let slot = document.getElementById('slot' + (i + 1));
+            if (slot && flowers[i]) {
+                let filename = flowers[i];
+                slot.innerHTML = `<img src="images/${filename}" onerror="this.onerror=null; this.src='${filename}';" style="width: 80%; height: 80%; object-fit: contain; pointer-events: none;">`;
+                slot.style.animation = 'none';
+                slot.style.border = 'none';
+                slot.style.backgroundColor = 'transparent';
+            } else if (slot) {
+                slot.innerHTML = ''; // ถ้าช่องนั้นคนส่งไม่ได้ใส่ดอกไม้ ให้เว้นว่าง
+                slot.style.animation = 'none';
+                slot.style.border = 'none';
+                slot.style.backgroundColor = 'transparent';
+            }
+        }
+        return; // โหลดจากลิงก์เสร็จแล้ว ให้ออกจากฟังก์ชันได้เลย ไม่ต้องไปดึงของเก่าในเครื่อง
+    }
+
     let data = localStorage.getItem('bouquetState');
     if (data) {
         let bouquetData = JSON.parse(data);
@@ -234,27 +256,67 @@ window.addEventListener('DOMContentLoaded', () => {
         // ซ่อนปุ่มไปหน้า Donate สำหรับคนรับลิงก์ด้วย
         const goDonateBtn = document.getElementById('go-donate-btn');
         if (goDonateBtn) goDonateBtn.style.display = 'none';
-    }
 
-    // นำข้อความที่บันทึกไว้มาแสดงในหน้า share.html
-    const savedShortMsg = localStorage.getItem('shortMessage');
-    if (savedShortMsg) {
-        const shareTitle = document.querySelector('.share-title');
-        if (shareTitle) shareTitle.innerText = savedShortMsg;
-    }
+        // สำหรับฝั่งคนรับ: โหลดข้อความจากลิงก์ URL
+        const urlShort = urlParams.get('short');
+        if (urlShort) {
+            const shareTitle = document.querySelector('.share-title');
+            if (shareTitle) shareTitle.innerText = urlShort;
+        }
 
-    const savedLongMsg = localStorage.getItem('longMessage');
-    if (savedLongMsg) {
-        const modalLetterText = document.getElementById('modal-letter-text');
-        if (modalLetterText) modalLetterText.innerText = savedLongMsg;
+        const urlLong = urlParams.get('long');
+        if (urlLong) {
+            const modalLetterText = document.getElementById('modal-letter-text');
+            if (modalLetterText) modalLetterText.innerText = urlLong;
+        }
+    } else {
+        // สำหรับฝั่งคนสร้าง: นำข้อความที่อยู่ในความจำเครื่องตัวเองมาแสดงปกติ
+        const savedShortMsg = localStorage.getItem('shortMessage');
+        if (savedShortMsg) {
+            const shareTitle = document.querySelector('.share-title');
+            if (shareTitle) shareTitle.innerText = savedShortMsg;
+        }
+
+        const savedLongMsg = localStorage.getItem('longMessage');
+        if (savedLongMsg) {
+            const modalLetterText = document.getElementById('modal-letter-text');
+            if (modalLetterText) modalLetterText.innerText = savedLongMsg;
+        }
     }
 });
 
 // ฟังก์ชันเวลากดปุ่ม "คัดลอกลิงก์"
 function copyShareLink() {
-    // เอา URL ปัจจุบันมาเติม ?view=receiver เข้าไป
     let currentUrl = window.location.origin + window.location.pathname;
-    let shareUrl = currentUrl + '?view=receiver';
+    
+    // ดึงข้อมูลทั้งหมดที่เคยจัดไว้ในเครื่อง
+    let shortMsg = localStorage.getItem('shortMessage') || '';
+    let longMsg = localStorage.getItem('longMessage') || '';
+    let bouquetDataStr = localStorage.getItem('bouquetState');
+    
+    // ดึงเฉพาะ "ชื่อไฟล์รูปดอกไม้" มาต่อกัน เพื่อให้ลิงก์สั้นและแชร์ง่าย
+    let flowers = [];
+    if (bouquetDataStr) {
+        let bData = JSON.parse(bouquetDataStr);
+        for(let i=1; i<=5; i++) {
+            if (bData['slot'+i]) {
+                let match = bData['slot'+i].match(/src=["'][^"']*?([^/\\"']+)["']/i);
+                flowers.push(match ? match[1] : '');
+            } else {
+                flowers.push('');
+            }
+        }
+    }
+    let fParam = flowers.join(',');
+
+    // นำข้อมูลทั้งหมดแพ็คใส่ URL
+    const params = new URLSearchParams();
+    params.append('view', 'receiver');
+    if (shortMsg) params.append('short', shortMsg);
+    if (longMsg) params.append('long', longMsg);
+    if (fParam && fParam !== ',,,,') params.append('f', fParam);
+
+    let shareUrl = currentUrl + '?' + params.toString();
 
     // สั่งก็อปปี้ลง Clipboard ของเครื่อง
     navigator.clipboard.writeText(shareUrl).then(() => {
