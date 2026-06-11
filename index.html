@@ -26,7 +26,7 @@
         <h2 class="subtitle">ส่งของขวัญให้คนที่รัก</h2>
         
         <div class="image-wrapper">
-            <img src="images/cat.png" onerror="this.onerror=null; this.src='cat.png';" alt="Cat Sketch" class="center-image">
+            <img src="images/cat.png" onerror="this.onerror=null; this.src='cat.png';" alt="Cat Sketch" class="center-image" onclick="meowEffect(event, this)">
         </div>
 
         <p class="dummy-text">
@@ -42,7 +42,7 @@
         <h1 class="logo-text">MeowDokMai</h1>
         <h2 class="subtitle" id="display-to" style="margin-top: 10px;">มีของขวัญส่งถึงคุณ 🌸</h2>
         <div class="image-wrapper">
-            <img src="images/cat.png" onerror="this.onerror=null; this.src='cat.png';" alt="Cat Sketch" class="center-image">
+            <img src="images/cat.png" onerror="this.onerror=null; this.src='cat.png';" alt="Cat Sketch" class="center-image" onclick="meowEffect(event, this)">
         </div>
         <p class="dummy-text" id="display-msg" style="white-space: pre-wrap; font-size: 1.1rem; color: #333;"></p>
         <button class="start-button" onclick="window.location.href='index.html'">สร้างของขวัญของคุณบ้าง</button>
@@ -65,6 +65,26 @@
                 if (msg) document.getElementById('display-msg').textContent = msg;
             }
         });
+
+        // ลูกเล่นเวลาคลิกรูปแมว
+        function meowEffect(event, img) {
+            // ทำให้รูปล่นแอนิเมชันเด้งดึ๋ง
+            img.classList.remove('cat-bounce');
+            void img.offsetWidth; // รีเซ็ตแอนิเมชันให้กดรัวๆ ได้
+            img.classList.add('cat-bounce');
+
+            // สร้างข้อความ "Meow! 🐾" ลอยขึ้นมาตรงจุดที่คลิก
+            const meowText = document.createElement('div');
+            meowText.innerText = "Meow! 🐾";
+            meowText.className = "floating-meow";
+            meowText.style.left = event.clientX + 'px';
+            meowText.style.top = event.clientY + 'px';
+            
+            document.body.appendChild(meowText);
+            
+            // ลบข้อความทิ้งเมื่อแอนิเมชันเล่นจบ (1 วินาที)
+            setTimeout(() => meowText.remove(), 1000);
+        }
     </script>
 
 </body>

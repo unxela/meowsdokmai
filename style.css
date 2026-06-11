@@ -68,6 +68,43 @@ body {
     height: auto;
     /* ถ้าเซฟรูปมาแล้วมีพื้นหลังขาว ให้เอาคอมเมนต์บรรทัดล่างออก มันจะช่วยให้กลืนกับสีฟ้าครับ */
     /* mix-blend-mode: multiply; */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.center-image:hover {
+    transform: scale(1.05) rotate(3deg); /* ขยายและเอียงนิดๆ เวลามือชี้ */
+}
+
+/* แอนิเมชันกระโดดเวลากด */
+@keyframes catBounce {
+    0% { transform: scale(1) translateY(0); }
+    30% { transform: scale(1.1) translateY(-15px); }
+    50% { transform: scale(0.9) translateY(5px); }
+    70% { transform: scale(1.05) translateY(-5px); }
+    100% { transform: scale(1) translateY(0); }
+}
+
+.cat-bounce {
+    animation: catBounce 0.5s ease;
+}
+
+/* ข้อความ Meow ลอยขึ้นไป */
+.floating-meow {
+    position: fixed;
+    color: #FF9EB5;
+    font-weight: bold;
+    font-size: 20px;
+    pointer-events: none;
+    z-index: 1000;
+    animation: floatUp 1s ease-out forwards;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, -100%);
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translate(-50%, -10px) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -60px) scale(1.2); }
 }
 
 .dummy-text {
@@ -543,11 +580,11 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(255, 158, 181, 0.4);
     margin-bottom: 30px;
-    transition: 0.2s;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .copy-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.85);
 }
 
 .footer-credit {
