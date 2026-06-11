@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สนับสนุนโปรเจกต์ - DokMai</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="donate-page">
+    
+    <header class="top-nav">
+        <div class="menu-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="#5C7CB4" stroke-width="2" fill="none">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <main class="donate-content">
+        <h1 class="logo-text">DokMai</h1>
+        <h2 class="support-title">ซัพพอร์ตโปรเจคพวกเราได้!</h2>
+        
+        <p class="support-desc">
+            สวัสดี! นี่คือโปรเจคที่ถูกขึ้นมาเพื่อฝึกฝีมือ<br>
+            แต่เนื่องด้วยการเปิดให้ใช้ฟรีจำเป็นต้องมีค่า Server<br>
+            ถ้าต้องการสนับสนุนพวกเราสามารถสแกน qrcode ได้เลย!
+        </p>
+
+        <!-- รูป QR Code -->
+        <div class="qr-wrapper">
+            <img src="images/qrcode.png" onerror="this.onerror=null; this.src='qrcode.png';" alt="QR Code สำหรับโดเนท" class="qr-image">
+        </div>
+
+        <!-- กล่องสิทธิพิเศษสีชมพู -->
+        <div class="privilege-box">
+            <h3>สิทธิสำหรับคนสนับสนุน</h3>
+            <ul>
+                <li>ดอกไม้มากขึ้น</li>
+                <li>ของตกแต่งมากขึ้น</li>
+                <li>ระบบจดหมาย</li>
+                <li>ใส่รูปและเพลงได้</li>
+            </ul>
+            <img src="images/floral-decor.png" onerror="this.onerror=null; this.src='floral-decor.png';" alt="ตกแต่ง" class="floral-decor">
+        </div>
+
+        <!-- กลุ่มปุ่มด้านล่าง -->
+        <div style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 300px;">
+            <button class="start-button" onclick="checkPremiumAndGo()" style="width: 100%; padding: 14px 20px; font-size: 16px;">กรอกรหัสผู้สนับสนุน</button>
+            <button class="back-btn" onclick="window.location.href='create.html'" style="width: 100%; text-align: center;">ข้าม &rarr;</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

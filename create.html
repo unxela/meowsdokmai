@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดช่อดอกไม้ - DokMai</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="create-page">
+    
+    <header class="top-nav">
+        <div class="menu-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="#5C7CB4" stroke-width="2" fill="none">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <section class="bouquet-display">
+        <div class="bouquet-area">
+            <img src="images/wrapper.png" onerror="this.onerror=null; this.src='wrapper.png';" alt="ช่อกระดาษเปล่า" class="base-wrapper">
+            
+            <div class="flower-slot" id="slot1" onclick="placeFlower(this)"></div>
+            <div class="flower-slot" id="slot2" onclick="placeFlower(this)"></div>
+            <div class="flower-slot" id="slot3" onclick="placeFlower(this)"></div>
+            <div class="flower-slot" id="slot4" onclick="placeFlower(this)"></div>
+            <div class="flower-slot" id="slot5" onclick="placeFlower(this)"></div>
+        </div>
+        
+        <!-- ปุ่มยางลบลอยอยู่ใกล้ๆ ช่อดอกไม้ -->
+        <div class="clear-tool-btn item-box" onclick="clearAllFlowers()" title="ลบดอกไม้ทั้งหมด">🗑️</div>
+    </section>
+
+    <section class="editor-section">
+        
+        <div class="category-tabs">
+            <div class="tab active" onclick="changeCategory('ดอกไม้', this)"></div>
+            <div class="tab" onclick="changeCategory('ใบไม้', this)"></div>
+            <div class="tab" onclick="changeCategory('กระดาษ', this)"></div>
+            <div class="tab" onclick="changeCategory('โบว์', this)"></div>
+        </div>
+
+        <div class="panel-container">
+            <div class="panel-header">
+                <span class="arrow" onclick="changePage(-1)">&#8592;</span>
+                <span class="page-indicator" id="page-text">1/3</span>
+                <span class="arrow" onclick="changePage(1)">&#8594;</span>
+            </div>
+
+            <div class="item-grid" id="item-grid">
+                <div class="item-box" onclick="selectFlower('images/rose.png', this)">
+                    <img src="images/rose.png" onerror="this.onerror=null; this.src='rose.png';" alt="Rose" style="width: 40px; object-fit: contain;">
+                </div>
+                <div class="item-box"></div>
+                <div class="item-box"></div>
+                <div class="item-box"></div>
+                <div class="item-box"></div>
+                <div class="item-box"></div>
+            </div>
+
+<button class="next-step-btn" onclick="goToMessagePage()">ไปต่อ &rarr;</button>        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

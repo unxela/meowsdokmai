@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อความถึงเขา - DokMai</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="message-page">
+    
+    <!-- แถบเมนูด้านบน -->
+    <header class="top-nav">
+        <div class="menu-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="#5C7CB4" stroke-width="2" fill="none">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <main class="message-content">
+        <!-- ข้อความพรีวิวด้านบน -->
+        <h2 id="preview-text">"ข้อความจะปรากฏตรงนี้"</h2>
+
+        <!-- รูปช่อดอกไม้ (ตอนนี้ใช้ช่อเปล่าๆ ไปก่อน) -->
+        <div class="bouquet-display-small bouquet-area">
+            <img src="images/wrapper.png" onerror="this.onerror=null; this.src='wrapper.png';" alt="ช่อดอกไม้" class="base-wrapper">
+            <div class="flower-slot" id="slot1"></div>
+            <div class="flower-slot" id="slot2"></div>
+            <div class="flower-slot" id="slot3"></div>
+            <div class="flower-slot" id="slot4"></div>
+            <div class="flower-slot" id="slot5"></div>
+        </div>
+
+        <!-- กล่องเขียนข้อความ -->
+        <div class="input-section">
+            <label for="short-msg">เขียนข้อความถึงเขา</label>
+            <textarea id="short-msg" placeholder="เขียนอะไรสักอย่างสั้นๆ"></textarea>
+        </div>
+
+        <!-- กลุ่มปุ่มด้านล่าง (ย้อนกลับ / ไปต่อ) -->
+        <div class="bottom-actions">
+            <button class="back-btn" onclick="window.location.href='create.html'">&larr; ย้อนกลับ</button>
+            <button class="next-step-btn" onclick="goToLetterPage()">ไปต่อ &rarr;</button>        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

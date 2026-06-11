@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ช่อดอกไม้ของคุณ - DokMai</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="share-page">
+    
+    <header class="top-nav">
+        <div class="menu-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="#5C7CB4" stroke-width="2" fill="none">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </header>
+
+    <main class="share-content">
+        <h2 class="share-title">นี่ เค้าทำช่อดอกไม้มาให้!</h2>
+
+        <div class="bouquet-display-final bouquet-area">
+            <img src="images/wrapper.png" onerror="this.onerror=null; this.src='wrapper.png';" alt="ช่อดอกไม้" class="base-wrapper">
+            <div class="flower-slot" id="slot1"></div>
+            <div class="flower-slot" id="slot2"></div>
+            <div class="flower-slot" id="slot3"></div>
+            <div class="flower-slot" id="slot4"></div>
+            <div class="flower-slot" id="slot5"></div>
+        </div>
+
+        <div class="envelope-section" id="envelope-section" onclick="toggleLetter()">
+            <p class="click-hint" id="click-hint">กดเพื่อเปิดจดหมาย</p>
+            
+            <img src="images/envelope-closed.png" onerror="this.onerror=null; this.src='envelope-closed.png';" id="env-closed" alt="ซองจดหมายปิด" class="envelope-img">
+            
+            <img src="images/envelope-open.png" onerror="this.onerror=null; this.src='envelope-open.png';" id="env-open" alt="ซองจดหมายเปิด" class="envelope-img hidden">
+        </div>
+
+        <!-- Popup จดหมาย -->
+        <div id="letter-modal" class="letter-modal" onclick="toggleLetter()">
+            <div class="modal-paper" onclick="event.stopPropagation()">
+                <p id="modal-letter-text">เอ๋เอ๋ สะกะดุ้ง กะดิ้ง ปะดุ่งดิ๊ง ดุงปะดุ่งกิง...</p>
+            </div>
+        </div>
+
+        <button class="copy-btn" id="copy-btn" onclick="copyShareLink()">คัดลอกลิงก์</button>
+        
+        <!-- ปุ่มไปหน้า Donate -->
+        <button class="next-step-btn" id="go-donate-btn" onclick="window.location.href='donate.html'" style="margin-bottom: 30px; background-color: #88D49E; box-shadow: 0 4px 10px rgba(136, 212, 158, 0.4);">สนับสนุนโปรเจกต์ &rarr;</button>
+
+        <p class="footer-credit">เว็บไซต์โดย @มีขังขะเฌอ, @alexonbush</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
