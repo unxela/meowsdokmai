@@ -133,7 +133,8 @@ body {
 
 /* เอฟเฟกต์ตอนกดปุ่ม */
 .start-button:active {
-    transform: scale(0.95);
+    transform: scale(0.95) translateY(4px);
+    box-shadow: 0 0px 0px rgba(255, 158, 181, 0.4);
 }
 
 /* ---- โค้ดสำหรับหน้า create.html ---- */
@@ -388,7 +389,8 @@ body {
 }
 
 .back-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.95) translateY(4px);
+    box-shadow: 0 0px 0px rgba(0,0,0,0.05);
 }
 
 /* ปรับปุ่มไปต่อในหน้านี้ให้ไม่ต้องลอย (ยกเลิก position: absolute) */
@@ -405,7 +407,8 @@ body {
 .letter-page .next-step-btn:active,
 .share-page .next-step-btn:active,
 .donate-page .next-step-btn:active {
-    transform: scale(0.85);
+    transform: scale(0.95) translateY(4px);
+    box-shadow: 0 0px 0px rgba(255, 158, 181, 0.4) !important;
 }
 
 /* แจ้งเตือน Popup ด้านบน */
@@ -443,7 +446,8 @@ body {
 }
 
 .clear-tool-btn:active {
-    transform: scale(0.85);
+    transform: scale(0.9) translateY(4px);
+    box-shadow: 0 0px 0px rgba(0,0,0,0.05);
 }
 
 /* ---- หน้า letter.html ---- */
@@ -595,7 +599,8 @@ body {
 }
 
 .copy-btn:active {
-    transform: scale(0.85);
+    transform: scale(0.95) translateY(4px);
+    box-shadow: 0 0px 0px rgba(255, 158, 181, 0.4);
 }
 
 .footer-credit {
