@@ -128,6 +128,7 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(255, 158, 181, 0.4);
     transition: transform 0.2s ease;
+    animation: popInNormal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* เอฟเฟกต์ตอนกดปุ่ม */
@@ -383,6 +384,7 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: transform 0.2s ease;
+    animation: popInNormal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .back-btn:active {
@@ -396,6 +398,14 @@ body {
 .donate-page .next-step-btn {
     position: static;
     transform: none;
+    animation: popInNormal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.message-page .next-step-btn:active,
+.letter-page .next-step-btn:active,
+.share-page .next-step-btn:active,
+.donate-page .next-step-btn:active {
+    transform: scale(0.85);
 }
 
 /* แจ้งเตือน Popup ด้านบน */
@@ -581,6 +591,7 @@ body {
     box-shadow: 0 4px 10px rgba(255, 158, 181, 0.4);
     margin-bottom: 30px;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: popInNormal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .copy-btn:active {
@@ -592,6 +603,17 @@ body {
     color: white;
     opacity: 0.7;
     margin-top: auto; /* ดันลงไปล่างสุด */
+}
+
+/* แอนิเมชันปุ่มเด้งตอนโหลดหน้าเว็บ */
+@keyframes popInNormal {
+    0% { opacity: 0; transform: translateY(15px) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes popInCentered {
+    0% { opacity: 0; transform: translateX(-50%) translateY(15px) scale(0.8); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
 /* ---- หน้า donate.html ---- */
