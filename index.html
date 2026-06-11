@@ -32,7 +32,38 @@
             ส่งความรักผ่านดอกไม้และคำพูดที่อบอุ่นใจ<br>
         </p>
 
-<button class="start-button" onclick="window.location.href='donate.html'">เริ่มจัดดอกไม้กันเลย!</button>    </main>
+<button class="start-button" onclick="window.location.href='donate.html'">เริ่มจัดดอกไม้กันเลย!</button>
+    </main>
+
+    <!-- ส่วนแสดงผลสำหรับผู้รับจดหมาย (จะแสดงเมื่อมีข้อมูลในลิงก์) -->
+    <main id="receiver-view" class="hero-section" style="display: none;">
+        <h1 class="logo-text">MeowDokMai</h1>
+        <h2 class="subtitle" id="display-to" style="margin-top: 10px;">มีของขวัญส่งถึงคุณ 🌸</h2>
+        <div class="image-wrapper">
+            <img src="images/cat.png" onerror="this.onerror=null; this.src='cat.png';" alt="Cat Sketch" class="center-image">
+        </div>
+        <p class="dummy-text" id="display-msg" style="white-space: pre-wrap; font-size: 1.1rem; color: #333;"></p>
+        <button class="start-button" onclick="window.location.href='index.html'">สร้างของขวัญของคุณบ้าง</button>
+    </main>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // ตรวจสอบข้อมูลที่แนบมากับ URL
+            const params = new URLSearchParams(window.location.search);
+            const to = params.get('to');
+            const msg = params.get('msg');
+
+            // ถ้ามีพารามิเตอร์ ถือว่าคนเปิดคือ "ผู้รับ"
+            if (to || msg) {
+                // ซ่อนหน้าหลัก แล้วแสดงหน้าจดหมายแทน
+                document.querySelector('.hero-section').style.display = 'none';
+                document.getElementById('receiver-view').style.display = 'block';
+                
+                if (to) document.getElementById('display-to').textContent = `ถึง: ${to} 🌸`;
+                if (msg) document.getElementById('display-msg').textContent = msg;
+            }
+        });
+    </script>
 
 </body>
 </html>
