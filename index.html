@@ -50,6 +50,11 @@
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
+            // เคลียร์ความจำเก่าเมื่อกลับมาหน้าแรก เพื่อให้เริ่มใหม่ได้เสมอ
+            localStorage.removeItem('bouquetState');
+            localStorage.removeItem('shortMessage');
+            localStorage.removeItem('longMessage');
+
             // ตรวจสอบข้อมูลที่แนบมากับ URL
             const params = new URLSearchParams(window.location.search);
             const to = params.get('to');
